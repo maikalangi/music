@@ -7,7 +7,6 @@ require('dotenv').config();
 const mongoose = require("mongoose");
 const cors = require('cors');
 const morgan = require('morgan');
-const { reset } = require("nodemon");
 const Playlist = require('./models/Playlist');
 const controller = require('./controllers/Playlists');
 
