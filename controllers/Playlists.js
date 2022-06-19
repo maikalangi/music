@@ -13,7 +13,7 @@ const router = express.Router();
 /////////////////////
 
 // PLAYLIST INDEX ROUTE
-router.get("/playlist", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         res.json(await Playlist.find({}));
     } catch (error) {
@@ -23,7 +23,7 @@ router.get("/playlist", async (req, res) => {
 });
 
 // PLAYLIST CREATE ROUTE
-router.post("/playlist", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
         res.json(await Playlist.create(req.body));
     } catch (error) {
@@ -33,7 +33,7 @@ router.post("/playlist", async (req, res) => {
 });
 
 // PLAYLIST DELETE ROUTE
-router.delete("/playlist/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
     try {
         const deletedPlaylist = await Playlist.findByIdAndRemove(req.params.id);
         res.send(deletedPlaylist);
@@ -44,7 +44,7 @@ router.delete("/playlist/:id", async (req, res) => {
 });
 
 // PLAYLIST UPDATE ROUTE
-router.put("/playlist/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
     try {
         const updatedPlaylist = await Playlist.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.send(updatedPerson);
