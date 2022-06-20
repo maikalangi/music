@@ -35,8 +35,7 @@ router.post("/", async (req, res) => {
 // PLAYLIST DELETE ROUTE
 router.delete("/:id", async (req, res) => {
     try {
-        const deletedPlaylist = await Playlist.findByIdAndRemove(req.params.id);
-        res.send(deletedPlaylist);
+        res.json(await Playlist.findByIdAndRemove(req.params.id));
     } catch (error) {
         console.log('error: ', error);
         res.send({error: 'something went wrong - check console'});
@@ -46,12 +45,21 @@ router.delete("/:id", async (req, res) => {
 // PLAYLIST UPDATE ROUTE
 router.put("/:id", async (req, res) => {
     try {
-        const updatedPlaylist = await Playlist.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        res.send(updatedPerson);
+        res.json(await Playlist.findByIdAndUpdate(req.params.id, req.body, { new: true }));
     } catch (error) {
         console.log('error: ', error);
         res.send({error: 'something went wrong - check console'});
     }
-})
+});
+
+// PLAYLIST SHOW ROUTE
+router.get('/:id', async (req, res) => {
+    try {
+        res.json(await Playlist.findById(req.params.id))
+    } catch (error) {
+        console.log('error: ', error);
+        res.send({error: 'something went wrong - check console'});
+    }
+});
 
 module.exports = router;
